@@ -1,6 +1,6 @@
 # Discrete Electronics Lab
 
-A collection of hands-on electronics experiments using only basic components, **no microcontrollers**. Just pure hardware: logic gates, timers, displays.
+A collection of hands-on electronics experiments using only a battery and basic components, **no microcontrollers**. Just pure hardware: logic gates, timers, displays.
 
 This repository is meant to explore and document small projects that demonstrate fundamental concepts in digital and analog electronics.
 
@@ -18,5 +18,5 @@ This repository is meant to explore and document small projects that demonstrate
 
 
 > ⚠️ I'm not an electronics engineer—just a curious learner exploring how things work at the hardware level.  
-> If you spot mistakes, have suggestions to simplify or improve these projects, or just want to chat about electronics, feel free to reach out: **anya.rybalova@gmail.com**.  
+> If you spot mistakes, have suggestions to simplify or improve these projects, feel free to reach out: **anya.rybalova@gmail.com**.  
 
