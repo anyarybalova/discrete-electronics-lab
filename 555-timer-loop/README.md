@@ -17,8 +17,6 @@ This is a small project I wasn’t even sure I should add to this repo. It’s j
 
 Here’s a closer look at one of the timers with a potentiometer attached:
 
-![Closer View - Timer with Potentiometer](./img/555-pot-close.jpg)
-
 ## ⚙️ What It Does
 - Pressing the button on **Timer A** triggers the first LED. When the capacitor and potentiometer reach the threshold level, **Timer A** will output a LOW signal.
 - When **Timer B** receives the LOW signal, it outputs a HIGH signal, turning on the second LED until the threshold is met. After **Timer B** outputs a LOW signal, the process repeats with **Timer A** turning on again.
@@ -41,6 +39,8 @@ Start by building a simple 555 timer circuit that will blink an LED when a butto
 
 The resistor–potentiometer–capacitor combination between **Pins 7 and 6** (and to ground) sets the timing for how long the LED stays on. Start with a 10kΩ resistor and a 10µF capacitor for a basic blink rate.
 
+![Closer View - Timer with Potentiometer](./one-timer.jpg)
+
 ### Step 2: Build the Second Timer Circuit
 Repeat the same steps as in Step 1 to build **Timer B**. The configuration is identical, and the timing components can be the same or different depending on your desired blinking pattern.
 
@@ -50,3 +50,9 @@ Repeat the same steps as in Step 1 to build **Timer B**. The configuration is id
 - **Timer B's Pin 3 (OUT)** connects to **Timer A's Pin 2 (TRIG)** to send a trigger signal, with another 0.1µF capacitor in between.
   
 When Timer A turns off, it triggers Timer B to turn on, and vice versa, creating a looping effect between the two LEDs.
+
+![Closer View - Timer A ](./timer-1.jpg)
+
+![Closer View - Timer A ](./timer-2.jpg)
+
+![Acelerated gif ](./video.gif)
