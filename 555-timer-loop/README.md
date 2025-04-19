@@ -29,7 +29,7 @@ Here’s a closer look at one of the timers with a potentiometer attached:
 Start by building a simple 555 timer circuit that will blink an LED when a button is pressed. Here are the pin connections for **Timer A**:
 
 1. **Pin 1 (GND)**: Connect to ground.
-2. **Pin 2 (TRIG)**: Connect to one terminal of pushbutton (the other terminal goes to ground). Also, connect a 10kΩ pull-down resistor between this pin and ground to avoid floating input.
+2. **Pin 2 (TRIG)**: Connect to one terminal of pushbutton (the other terminal goes to ground). Also, connect a 10kΩ pull-down resistor between this pin and vcc to avoid floating input.
 3. **Pin 3 (OUT)**: Connect to the anode of the LED (the cathode of the LED goes to the resistor.
 4. **Pin 4 (RESET)**: Connect to +9V to disable reset functionality.
 5. **Pin 5 (CV)**: Connect small capacitor (0.01µF) to ground to filter noise.
@@ -39,7 +39,7 @@ Start by building a simple 555 timer circuit that will blink an LED when a butto
 
 The resistor–potentiometer–capacitor combination between **Pins 7 and 6** (and to ground) sets the timing for how long the LED stays on. Start with a 10kΩ resistor and a 10µF capacitor for a basic blink rate.
 
-![Closer View - Timer with Potentiometer](./one-timer.jpg)
+<img src="./one-timer.jpg" alt="Closer View - Timer with Potentiometer" width="350">
 
 ### Step 2: Build the Second Timer Circuit
 Repeat the same steps as in Step 1 to build **Timer B**. The configuration is identical, and the timing components can be the same or different depending on your desired blinking pattern.
@@ -51,8 +51,9 @@ Repeat the same steps as in Step 1 to build **Timer B**. The configuration is id
   
 When Timer A turns off, it triggers Timer B to turn on, and vice versa, creating a looping effect between the two LEDs.
 
-![Closer View - Timer A ](./timer-1.jpg)
-
-![Closer View - Timer A ](./timer-2.jpg)
+<p>
+  <img src="./timer-1.jpg" alt="Timer A" width="350">
+  <img src="./timer-2.jpg" alt="Timer B" width="350">
+</p>
 
 ![Acelerated gif ](./video.gif)
