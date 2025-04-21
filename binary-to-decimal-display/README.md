@@ -66,15 +66,85 @@ After wiring it up, use a multimeter to check the output. It should read close t
 > Note: If you're using a regulated bench power supply set to 5V, you can skip the voltage regulator.
 
 <p>
-  <img src="./img/voltage-step1-1.jpg" alt="Voltage Regulator" width="300" style="margin-right: 20px;">
+  <img src="./img/voltage-step1-1.jpg" alt="Voltage Regulator" width="400" style="margin-right: 20px;">
   <img src="./img/voltage-step1-2.jpg" alt="Voltage Regulator multimeter" width="300">
 </p>
 
-### 2. Connect 5-bit DIP switch  
+### 2. Connect 5-bit DIP Switch
 
+I'm not sure if standalone 5-bit DIP switches exist, so I used a combination of a 4-bit and a 1-bit switch. Each switch is wired as follows:
 
+- One side of each switch is connected to **5V**  
+- The other side is connected to the **input pins** of the logic circuit  
+- Each input is also pulled down to **GND** using **15kΩ resistors**, to ensure a clear LOW state when the switch is off  
+- Add jumper wires from each switch output and plug them into empty breadboard rows for now, or you can add the LEDs tempporary to test.
+
+<img src="./img/DIP-swiitch-step2.jpg" alt="dip switch" width="300">
+  
 ### 3. Connect BCD logic and 7-segment displays  
-Wire the tens and units outputs to their respective display drivers and 7-segment displays.
+
+On a separate breadboard, connect the **74LS47** and the **7-segment display**. There are plenty of datasheets online for both components if you need pinouts.
+Don’t forget to add **current-limiting resistors** for each segment of the display—values between **220Ω and 470Ω** work well, depending on brightness.
+
+For testing, connect the **A, B, C, and D** inputs of the 74LS47 to either **GND or 5V** manually, and play around with different binary combinations. This is a good way to confirm that the correct numbers are being shown on the display before wiring it up to the rest of the logic circuit.
+
+### 4. Wiring the First Digit (Tens Place)
+
+Since I couldn’t figure out how to cleanly use a 2-digit 7-segment display (if you know how, feel free to DM me!), I went with a simple solution: use one display for the **tens** and another for the **units**.
+
+Because the input is only 5 bits (values 0–31), the tens digit will only ever be 0, 1, 2, or 3. In binary, that means:
+
+0000  
+0001  
+0010  
+0011
+
+So, the `D` and `C` inputs of the 74LS47 connected to the tens display will **always be 0**, and you can connect them directly to GND.
+
+#### Logic for Input B (of 74LS47)
+
+Looking at the binary values from 10 to 31:
+from 10 to 31:
+```
+Dec   E D C B A
+10    0 1 0 1 0
+11    0 1 0 1 1
+12    0 1 1 0 0
+...
+29    1 1 1 0 1
+30    1 1 1 1 0
+31    1 1 1 1 1
+```
+we can split the conditions for `B` into two main cases:
+
+- From **10 to 15**: when `E = 0`, `D = 1`, and `B` or `C` is high  
+- From **16 to 31**: when `E = 1`, and either `D = 0` or `B = 0`
+
+That gives us the logic formula:
+
+`B = (!E ∧ D ∧ (B ∨ C)) ∨ (E ∧ (!D ∨ !B))`
+
+#### Logic for Input A (of 74LS47)
+
+This one’s a bit more complex. The input `A` should be high in three ranges:
+
+- From **10 to 15**: `E = 0`, `D = 1`, and `B` or `C` is high      => `!E ∧ D ∧ (B ∨ C)`
+- From **16 to 19**: `E = 1`, `D = 0`, `C = 0`                     => `E ∧ !D ∧ !C`
+- For **30 and 31**: `E = 1`, `D = 1`, `C = 1`, and `B = 1`        => `E ∧ D ∧ C ∧ B`
+
+So the full logic expression is:
+
+`A = (!E ∧ D ∧ (B ∨ C)) ∨ (E ∧ !D ∧ !C) ∨ (E ∧ D ∧ C ∧ B)`
+
+#### Gate Usage & Layout
+
+To build this with basic gates, I used:
+- 2 AND gates  
+- 1 OR gate  
+- 1 NOT gate  
+
+I placed some gates (like an AND and a NOT) in the middle of the board so they could be reused by the second digit logic later. The final OR gate was placed next to the 74LS47, since that’s where the result is fed into.
+
 
 ## 📬 Reach Out
 
