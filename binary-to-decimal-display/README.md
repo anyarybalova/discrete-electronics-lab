@@ -103,38 +103,42 @@ So, the `D` and `C` inputs of the 74LS47 connected to the tens display will **al
 
 #### Logic for Input B (of 74LS47)
 
-Looking at the binary values from 10 to 31:
-from 10 to 31:
+Looking at the binary values from 20 to 31:
 ```
 Dec   E D C B A
-10    0 1 0 1 0
-11    0 1 0 1 1
-12    0 1 1 0 0
+20    1 0 1 0 0
+21    1 0 1 0 1
 ...
-29    1 1 1 0 1
 30    1 1 1 1 0
 31    1 1 1 1 1
 ```
-we can split the conditions for `B` into two main cases:
-
-- From **10 to 15**: when `E = 0`, `D = 1`, and `B` or `C` is high  
-- From **16 to 31**: when `E = 1`, and either `D = 0` or `B = 0`
+So, B would be easy to set up:
+- From **20 to 31**: when `E = 1`, and `D` or `C` is high  
 
 That gives us the logic formula:
 
-`B = (!E ∧ D ∧ (B ∨ C)) ∨ (E ∧ (!D ∨ !B))`
+<pre>B = E ∧ (D ∨ C)</pre>
 
 #### Logic for Input A (of 74LS47)
 
 This one’s a bit more complex. The input `A` should be high in three ranges:
 
-- From **10 to 15**: `E = 0`, `D = 1`, and `B` or `C` is high      => `!E ∧ D ∧ (B ∨ C)`
-- From **16 to 19**: `E = 1`, `D = 0`, `C = 0`                     => `E ∧ !D ∧ !C`
-- For **30 and 31**: `E = 1`, `D = 1`, `C = 1`, and `B = 1`        => `E ∧ D ∧ C ∧ B`
+- **From 10 to 15**:  
+  `E = 0`, `D = 1`, `B or C is high`  
+  → **Condition 1**: `¬E ∧ D ∧ (B ∨ C)`
+
+- **From 16 to 19**:  
+  `E = 1`, `D = 0`, `C = 0`  
+  → **Condition 2**: `E ∧ ¬D ∧ ¬C`
+
+- **For 30 and 31**:  
+  `E = 1`, `D = 1`, `C = 1`, `B = 1`  
+  → **Condition 3**: `E ∧ D ∧ C ∧ B`
+
 
 So the full logic expression is:
 
-`A = (!E ∧ D ∧ (B ∨ C)) ∨ (E ∧ !D ∧ !C) ∨ (E ∧ D ∧ C ∧ B)`
+<pre> <strong>A</strong> = (¬E ∧ D ∧ (B ∨ C)) <strong>∨</strong> (E ∧ ¬D ∧ ¬C) <strong>∨</strong> (E ∧ D ∧ C ∧ B) </pre>
 
 #### Gate Usage & Layout
 
