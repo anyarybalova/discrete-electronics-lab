@@ -6,6 +6,7 @@ Built mainly for fun and learning, it was a way to dive deeper into electronics 
 
 It was surprisingly fascinating to implement what seemed like a "simple" algorithm entirely in hardware.
 
+I've also included a simpler alternative for building same project [`binary-to-decimal-display-2nd-option`](./binary-to-decimal-display-2)
 
 ## What This Does
 
@@ -44,6 +45,7 @@ It was surprisingly fascinating to implement what seemed like a "simple" algorit
   - 4-bit output for the **units** place, which is connected to a 74LS47 BCD-to-7-segment driver and another display.
 
 ---
+<img src="./img/complete_wiring.jpg" alt="final_picture" width="400">
 
 ## Steps
 
@@ -148,6 +150,20 @@ To build this with basic gates, I used:
 - 1 NOT gate  
 
 I placed some gates (like an AND and a NOT) in the middle of the board so they could be reused by the second digit logic later. The final OR gate was placed next to the 74LS47, since that’s where the result is fed into.
+
+I used a multimeter to track down any incorrect or missing connections while debugging.
+
+Diagram connections and wiring look like this, (diagram is the latest, some wiring on the picture were changed to be able to reuse more for 2nd digit)
+
+<img src="./img/1st_digit_wiring.jpg" alt="1st-digit_picture" width="400">
+<img src="./img/logic_gates_connections_1st_digit.jpg" alt="logic gates pin connections" width="700">
+
+### 5. Wiring the Second Digit (Units)
+I was trying to reuse the results from connecting first digit, like: 
+
+From **AND**: E ∧ D, E ∧ D ∧ C, ¬D ∧ ¬C, B ∧ C, 
+
+From **NOT**: ¬E, ¬D, ¬C, ¬B
 
 
 ## 📬 Reach Out
