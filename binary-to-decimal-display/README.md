@@ -145,29 +145,96 @@ So the full logic expression is:
 #### Gate Usage & Layout
 
 To build this with basic gates, I used:
-- 2 AND gates  
-- 1 OR gate  
-- 1 NOT gate  
+- 2 AND gates
+- 1 OR gate
+- 1 NOT gate
+- 1 74LS47 decoder
+- 1 7-segment-display
+- 7 Resistors for the display
 
-I placed some gates (like an AND and a NOT) in the middle of the board so they could be reused by the second digit logic later. The final OR gate was placed next to the 74LS47, since that’s where the result is fed into.
+I placed some gates (like an AND and a NOT) in the center of the board so they could be reused later for the second digit's logic. The final OR gate is located near the 74LS47, as it directly feeds into it.
 
 I used a multimeter to track down any incorrect or missing connections while debugging.
 
-Diagram connections and wiring look like this, (diagram is the latest, some wiring on the picture were changed to be able to reuse more for 2nd digit)
+The diagram below reflects the most recent wiring. (Note that some connections in the photo have since been modified to allow more components to be reused for the second digit).
 
 <img src="./img/1st_digit_wiring.jpg" alt="1st-digit_picture" width="400">
 <img src="./img/logic_gates_connections_1st_digit.jpg" alt="logic gates pin connections" width="700">
 
 ### 5. Wiring the Second Digit (Units)
-I was trying to reuse the results from connecting first digit, like: 
+
+To build this with basic gates, I used:
+- 5 AND gates  
+- 3 OR gate  
+- 1 74LS47 decoder
+- 1 7-segment-display
+- 7 Resistors for the display
+  
+I was trying to reuse the results from connecting first digit: 
 
 From **AND**: E ∧ D, E ∧ D ∧ C, ¬D ∧ ¬C, B ∧ C, 
 
 From **NOT**: ¬E, ¬D, ¬C, ¬B
+#### Logic for Input A (of 74LS47)
+Just connecting A, 1st output to A
 
+#### Logic for Input B (of 74LS47)
+The most complicated, maybe I had to leave at the end, and wire it after C and D. 
+<pre> 
+<strong>B1</strong> = ¬E ∧ ¬D ∧ B
+<strong>B2</strong> = ¬E ∧ ¬D ∧ B ∧ ¬C
+<strong>B3</strong> = ¬E ∧ D ∧ C ∧ ¬B
+<strong>B4</strong> = E ∧ ¬D ∧ ¬C ∧ ¬B
+<strong>B5</strong> = E ∧ ¬D ∧ C ∧ B
+<strong>B6</strong> = E ∧ D ∧ ¬C ∧ ¬B
+ 
+B = OR of B1-6
+</pre> 
+
+As many of logical blocks are repeating, I split it in blocks to reuse it:
+From building A, 1st digit:
+- 1 = E ∧ D
+- 2 = E ∧ D ∧ C
+From Building B, 2nd digit
+- 5 = C ∧ B
+- 6 = ¬E ∧ ¬D
+- 7 = ¬C ∧ B
+- 8 = ¬E ∧ D
+- 9 = C ∧ ¬B
+- 10 = ¬E ∧ D
+- 11 = ¬C ∧ ¬B
+
+#### Logic for Input C (of 74LS47)
+<pre>
+<strong>C1</strong> = ¬E ∧ ¬D ∧ C
+    (6 and C)
+<strong>C2</strong> = ¬E ∧ D ∧ C ∧ B
+    (8 and 5)
+<strong>C3</strong> = E ∧ D ∧ ¬C ∧ ¬B
+    (10 and 11)
+<strong>C4</strong> = E ∧ D ∧ ¬C
+    (1 and ¬C)
+
+C = C1 or C2 or C3 or C4
+</pre>
+
+#### Logic for Input D (of 74LS47)
+<pre>
+<strong>D1</strong> = ¬E ∧ D ∧ ¬C ∧ ¬B 
+    (8 and 10)
+<strong>D2</strong> = E ∧ ¬D ∧ ¬C ∧ B
+    (10 and 7)
+<strong>D3</strong> = E ∧ D ∧ C ∧ ¬B
+     (1 and 9)
+
+D = D1 or D2 or D3
+</pre>
+Diagram for the second digit connection:
+
+
+Maybe not the optimal approach, but it was a fun challenge—and honestly, more relaxing than meditation.
 
 ## 📬 Reach Out
-
 If you're building something similar feel free to reach out. 
 
 ---
