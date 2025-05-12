@@ -231,7 +231,7 @@ D = D1 or D2 or D3
 </pre>
 Diagram for the second digit connection:
 
-<img src="./img/logic_diagram_2st_digit_connections.jpg" alt="2nd digit connections" width="800">
+<img src="./img/logic_diagram_2st_digit_connections_dark.png" alt="2nd digit connections" width="800">
 
 Wiring:
 
