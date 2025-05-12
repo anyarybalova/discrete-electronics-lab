@@ -8,7 +8,6 @@ This repository is meant to explore and document small projects that demonstrate
 | Project | Description |
 |--------|-------------|
 | [`binary-to-decimal-display`](./binary-to-decimal-display) | Convert 5-bit binary input into decimal and display it using two 7-segment displays—fully built from logic chips. |
-| [`555-timer-loop`](./555-timer-loop) | Two 555 timers triggering each other in a loop way to explore astable and monostable configurations. |
 
 
 ## Goals
