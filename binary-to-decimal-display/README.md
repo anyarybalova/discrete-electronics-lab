@@ -47,6 +47,9 @@ I've also included an alternative for building same project [`binary-to-decimal-
 ---
 <img src="./img/complete_wiring.jpg" alt="final_picture" width="400">
 
+### Video
+[youtube](https://youtube.com/shorts/nWZUW2EnIqc)
+
 ## Steps
 
 ### 1. Connect Voltage regulator  
