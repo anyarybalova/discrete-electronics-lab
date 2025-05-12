@@ -6,7 +6,7 @@ Built mainly for fun and learning, it was a way to dive deeper into electronics 
 
 It was surprisingly fascinating to implement what seemed like a "simple" algorithm entirely in hardware.
 
-I've also included a simpler alternative for building same project [`binary-to-decimal-display-2nd-option`](./binary-to-decimal-display-2)
+I've also included an alternative for building same project [`binary-to-decimal-display-2nd-option`](./binary-to-decimal-display-2) using different chips.
 
 ## What This Does
 
@@ -231,13 +231,10 @@ D = D1 or D2 or D3
 </pre>
 Diagram for the second digit connection:
 
+<img src="./img/logic_diagram_2st_digit_connections.jpg" alt="2nd digit connections" width="800">
 
-Maybe not the optimal approach, but it was a fun challenge—and honestly, more relaxing than meditation.
+Wiring:
 
-## 📬 Reach Out
-If you're building something similar feel free to reach out. 
+<img src="./img/wiring_2nd_digit.jpg" alt="2nd digit connections" width="800">
 
----
-
-Thanks for checking out my little project!
-
+It was a fun build, more about experimenting, learning, and enjoying the process. If you’re working on something similar or have suggestions, I’d love to hear from you.
