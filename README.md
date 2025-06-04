@@ -8,6 +8,7 @@ This repository is meant to explore and document small projects that demonstrate
 | Project | Description |
 |--------|-------------|
 | [`binary-to-decimal-display`](./binary-to-decimal-display) | Convert 5-bit binary input into decimal and display it using two 7-segment displays—fully built from logic chips. |
+| [`binary-to-decimal-display-2nd-option`](./binary-to-decimal-display-2nd-option) | Simpler option to convert 5-bit binary input into decimal |
 
 
 ## Goals
