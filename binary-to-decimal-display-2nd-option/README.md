@@ -4,14 +4,14 @@ This is a simple hardware project that turns a 5-bit binary number into a decima
 
 Built mainly for fun and learning, it was a way to dive deeper into electronics and explore what can be made without relying on code. 
 
-Its improving version of [`binary-to-decimal-display`](./binary-to-decimal-display). In this version it takes less components to build the same.  
+Its improved version of [`binary-to-decimal-display`](./binary-to-decimal-display)
 
 ## What This Does
 
 - Takes a 5-bit binary input from DIP switch
-- Using **74-series logic chips**
+- Using **74-series logic chips** to extract first digit
+- Using **Mux and adder** for the second digit
 - Outputs the corresponding decimal number using 2 **7-segment displays** 
-
 ---
 
 
